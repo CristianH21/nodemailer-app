@@ -23,19 +23,15 @@ app.get('/', (req, res) => {
 
 app.post('/send', (req, res) => {
     const output = `
-        <p>You have a new mail</p>
-        <h5>Contact Information</h5>
-        <ul>
-            <li>${req.body.fullname}</li>
-            <li>${req.body.email}</li>
-            <li>${req.body.phone}</li>
-        </ul>
-        <h5>Message</h5>
+        <p>You have a new mail from: ${req.body.fullname}</p>
+        <h4>Contact Information</h4>
+        <p>Phone number: ${req.body.phone}</p>
+        <h4>Message</h4>
         <p>${req.body.message}</p>
     `;
 
     let transporter = nodemailer.createTransport({
-        host: 'tonashub.com',
+        host: 'mail.privateemail.com',
         port: 587,
         secure: false,
         auth: {
@@ -50,9 +46,8 @@ app.post('/send', (req, res) => {
     //setup email data
     let mailOptions = {
         from: '"Tonashub" <tona@tonashub.com>',
-        to: 'crishhtona21@gmail.com',
+        to: 'tona@tonashub.com, crishhtona21@gmail.com',
         subject: 'New Request',
-        text: 'Hello Buddy',
         html: output
     };
     
